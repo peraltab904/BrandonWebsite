@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brandon Peralta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── Tokens ─────────────────────────────────────────────── */
+    :root {
+      --clay:   #C05D3C;
+      --sage:   #7E9078;
+      --ochre:  #C98A35;
+      --ink:    #2B2620;
+      --paper:  #F6F1E7;
+      --sand:   #EFE6D5;
+      --card:   #FFFDF8;
+      --muted:  #6B6155;
+      --hairline: rgba(43,38,32,.12);
+
+      --max-w: 1120px;
+      --gutter: 40px;
+      --section-gap: 80px;
+
+      --font-display: 'Montserrat', sans-serif;
+      --font-body: 'Lora', serif;
+    }
+
+    /* ─── Base ───────────────────────────────────────────────── */
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.7;
+      border-top: 5px solid var(--ink);
+    }
+
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    /* ─── Nav ────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--paper);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-monogram {
+      width: 36px;
+      height: 36px;
+      background: var(--clay);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 14px;
+      color: var(--paper);
+      letter-spacing: .04em;
+      flex-shrink: 0;
+    }
+
+    .nav-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color .15s;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    .nav-cta {
+      background: var(--clay);
+      color: #fff !important;
+      padding: 7px 16px;
+      border-radius: 2px;
+      transition: filter .15s !important;
+    }
+
+    .nav-cta:hover { filter: brightness(.92); }
+
+    /* hamburger */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: .2s;
+    }
+
+    /* ─── Hero ───────────────────────────────────────────────── */
+    .hero {
+      padding: 96px var(--gutter) 88px;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    .hero-overline {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 20px;
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: 1.02;
+      letter-spacing: -.01em;
+      text-transform: uppercase;
+      color: var(--ink);
+      max-width: 14ch;
+      margin-bottom: 28px;
+    }
+
+    .hero-headline em {
+      font-style: normal;
+      color: var(--clay);
+    }
+
+    .hero-sub {
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 52ch;
+      margin-bottom: 40px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    /* ─── Buttons ────────────────────────────────────────────── */
+    .btn {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 14px 26px;
+      border-radius: 2px;
+      cursor: pointer;
+      border: none;
+      transition: filter .15s, background .15s, color .15s;
+      line-height: 1;
+    }
+
+    .btn-primary {
+      background: var(--clay);
+      color: #fff;
+    }
+    .btn-primary:hover { filter: brightness(.92); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border: 2px solid var(--ink);
+    }
+    .btn-outline:hover {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .btn-soft {
+      background: var(--sand);
+      color: var(--ink);
+    }
+    .btn-soft:hover { background: #e2d8c5; }
+
+    /* ─── Section headers ────────────────────────────────────── */
+    .section {
+      padding: var(--section-gap) 0;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 40px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .section-label {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 28px;
+      letter-spacing: -.01em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .section-link {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--clay);
+      border-bottom: 2px solid var(--clay);
+      padding-bottom: 2px;
+      white-space: nowrap;
+      transition: opacity .15s;
+    }
+    .section-link:hover { opacity: .75; }
+
+    /* ─── Writing cards ──────────────────────────────────────── */
+    .writing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .writing-card {
+      background: var(--card);
+      border-radius: 6px;
+      border: 1px solid var(--hairline);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow .2s;
+    }
+
+    .writing-card:hover {
+      box-shadow: 0 6px 24px rgba(43,38,32,.1);
+    }
+
+    .writing-card-img {
+      aspect-ratio: 16 / 10;
+      background: var(--sand);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .writing-card-img-inner {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* placeholder image pattern */
+    .img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .img-placeholder svg {
+      opacity: .25;
+    }
+
+    .writing-card-body {
+      padding: 20px 22px 22px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-overline {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 1.35;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+
+    .card-excerpt {
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--muted);
+      margin-bottom: 18px;
+      flex: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .card-date {
+      font-family: ui-monospace, monospace;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .card-read {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--clay);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: opacity .15s;
+    }
+    .card-read:hover { opacity: .75; }
+    .card-read::after { content: ' →'; }
+
+    /* ─── Recipe cards ───────────────────────────────────────── */
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .recipe-card {
+      background: var(--card);
+      border-radius: 6px;
+      border: 1px solid var(--hairline);
+      overflow: hidden;
+      transition: box-shadow .2s;
+    }
+
+    .recipe-card:hover {
+      box-shadow: 0 6px 24px rgba(43,38,32,.1);
+    }
+
+    .recipe-card-img {
+      aspect-ratio: 16 / 10;
+      background: #d8e5d4;
+      position: relative;
+    }
+
+    .recipe-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--sage);
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    .recipe-card-body {
+      padding: 20px 22px 22px;
+    }
+
+    .recipe-title {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 1.35;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .recipe-stats {
+      display: flex;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+
+    .recipe-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .recipe-stat-label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 9px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .recipe-stat-value {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--ink);
+    }
+
+    .recipe-link {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 14px;
+      color: var(--sage);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: opacity .15s;
+    }
+    .recipe-link:hover { opacity: .75; }
+    .recipe-link::after { content: ' →'; }
+
+    /* ─── Newsletter ─────────────────────────────────────────── */
+    .newsletter {
+      background: var(--ink);
+      padding: 72px var(--gutter);
+    }
+
+    .newsletter-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .newsletter-overline {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 14px;
+    }
+
+    .newsletter-headline {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 32px;
+      letter-spacing: -.01em;
+      text-transform: uppercase;
+      color: var(--paper);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .newsletter-copy {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgba(246,241,231,.7);
+    }
+
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .newsletter-field {
+      display: flex;
+      gap: 0;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      background: var(--card);
+      border: 1.5px solid rgba(43,38,32,.25);
+      border-right: none;
+      border-radius: 3px 0 0 3px;
+      padding: 13px 16px;
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--ink);
+      outline: none;
+      transition: border-color .15s;
+    }
+    .newsletter-input:focus { border-color: var(--clay); }
+    .newsletter-input::placeholder { color: var(--muted); }
+
+    .newsletter-btn {
+      background: var(--clay);
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 13px 22px;
+      border: none;
+      border-radius: 0 3px 3px 0;
+      cursor: pointer;
+      transition: filter .15s;
+      white-space: nowrap;
+    }
+    .newsletter-btn:hover { filter: brightness(.92); }
+
+    .newsletter-note {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: rgba(246,241,231,.4);
+    }
+
+    /* ─── Connect ────────────────────────────────────────────── */
+    .connect {
+      background: var(--clay);
+      padding: 88px var(--gutter);
+      text-align: center;
+    }
+
+    .connect-inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .connect-overline {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(246,241,231,.7);
+      margin-bottom: 16px;
+    }
+
+    .connect-headline {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(32px, 4vw, 52px);
+      letter-spacing: -.01em;
+      text-transform: uppercase;
+      color: var(--paper);
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .connect-copy {
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.7;
+      color: rgba(246,241,231,.8);
+      margin-bottom: 36px;
+      max-width: 48ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-paper {
+      background: var(--paper);
+      color: var(--clay);
+    }
+    .btn-paper:hover { filter: brightness(.96); }
+
+    /* ─── Footer ─────────────────────────────────────────────── */
+    footer {
+      background: var(--ink);
+      padding: 40px var(--gutter);
+    }
+
+    .footer-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-monogram {
+      width: 32px;
+      height: 32px;
+      background: var(--clay);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 12px;
+      color: var(--paper);
+      flex-shrink: 0;
+    }
+
+    .footer-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(246,241,231,.6);
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(246,241,231,.5);
+      transition: color .15s;
+    }
+    .footer-links a:hover { color: var(--paper); }
+
+    .footer-copy {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: rgba(246,241,231,.35);
+      width: 100%;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(246,241,231,.08);
+      text-align: center;
+    }
+
+    /* ─── Tags ───────────────────────────────────────────────── */
+    .tag {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+    .tag-blog { background: var(--ochre); color: var(--ink); }
+    .tag-ministry { border: 1.5px solid var(--muted); color: var(--muted); }
+
+    /* ─── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      :root { --gutter: 24px; }
+
+      .writing-grid,
+      .recipe-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .newsletter-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      :root { --gutter: 20px; --section-gap: 56px; }
+
+      .writing-grid,
+      .recipe-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: var(--paper);
+        border-bottom: 1px solid var(--hairline);
+        padding: 20px var(--gutter);
+        gap: 18px;
+      }
+
+      .hero { padding: 60px var(--gutter) 56px; }
+
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav ──────────────────────────────────────────────── -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="nav-monogram">BP</div>
+        <span class="nav-name">Brandon Peralta</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#writing">Writing</a></li>
+        <li><a href="#recipes">Recipes</a></li>
+        <li><a href="#newsletter">Newsletter</a></li>
+        <li><a href="#connect" class="nav-cta">Connect</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── Hero ─────────────────────────────────────────────── -->
+  <section class="hero" id="home">
+    <p class="hero-overline">Student Ministry · Writing · Food</p>
+    <h1 class="hero-headline">Words,<br>Faith<br>&amp; <em>Good Food</em></h1>
+    <p class="hero-sub">
+      I'm Brandon — a student ministry leader who writes about ordinary moments, shows up for people, and occasionally makes really good tacos. This is where I put it all.
+    </p>
+    <div class="hero-actions">
+      <a href="#connect" class="btn btn-primary">Let's connect</a>
+      <a href="#writing" class="btn btn-outline">Read my writing</a>
+    </div>
+  </section>
+
+  <!-- ── Writing ───────────────────────────────────────────── -->
+  <section class="section" id="writing">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-label">Writing</h2>
+        <a href="#writing" class="section-link">All posts</a>
+      </div>
+      <div class="writing-grid">
+
+        <!-- Card 1 -->
+        <article class="writing-card">
+          <div class="writing-card-img">
+            <div class="img-placeholder" style="background:#e8dfd0;">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="4" fill="#2B2620"/><path d="M12 36 L24 16 L36 36" stroke="#F6F1E7" stroke-width="2" fill="none"/><circle cx="24" cy="14" r="3" fill="#C05D3C"/></svg>
+            </div>
+          </div>
+          <div class="writing-card-body">
+            <p class="card-overline">Faith &amp; Ministry</p>
+            <h3 class="card-title">Why I Stopped Trying to Be the Cool Pastor</h3>
+            <p class="card-excerpt">Something shifted when I realized the students didn't need me to be impressive. They needed me to be present.</p>
+            <div class="card-meta">
+              <span class="card-date">Jun 12, 2025</span>
+              <a href="#" class="card-read">Read</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="writing-card">
+          <div class="writing-card-img">
+            <div class="img-placeholder" style="background:#d8e5d4;">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="4" fill="#7E9078"/><path d="M16 28 Q24 16 32 28" stroke="#F6F1E7" stroke-width="2" fill="none"/><rect x="20" y="28" width="8" height="6" rx="1" fill="#F6F1E7" opacity=".6"/></svg>
+            </div>
+          </div>
+          <div class="writing-card-body">
+            <p class="card-overline">Reflection</p>
+            <h3 class="card-title">The Ordinary Week That Changed Everything</h3>
+            <p class="card-excerpt">Nothing dramatic happened. No big moment. Just a Tuesday, a conversation after youth group, and a reminder that small things matter.</p>
+            <div class="card-meta">
+              <span class="card-date">May 28, 2025</span>
+              <a href="#" class="card-read">Read</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="writing-card">
+          <div class="writing-card-img">
+            <div class="img-placeholder" style="background:#efe6d5;">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="4" fill="#C98A35"/><path d="M14 34 L14 22 L24 14 L34 22 L34 34 Z" stroke="#F6F1E7" stroke-width="2" fill="none"/></svg>
+            </div>
+          </div>
+          <div class="writing-card-body">
+            <p class="card-overline">Leadership</p>
+            <h3 class="card-title">What Student Ministry Taught Me About Showing Up</h3>
+            <p class="card-excerpt">You don't have to have it all together. You just have to keep showing up — week after week, imperfect and available.</p>
+            <div class="card-meta">
+              <span class="card-date">May 5, 2025</span>
+              <a href="#" class="card-read">Read</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Recipes ───────────────────────────────────────────── -->
+  <section class="section" id="recipes" style="background: var(--sand); padding-top: var(--section-gap); padding-bottom: var(--section-gap);">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-label">Recipes</h2>
+        <a href="#recipes" class="section-link">All recipes</a>
+      </div>
+      <div class="recipe-grid">
+
+        <!-- Recipe 1 -->
+        <article class="recipe-card">
+          <div class="recipe-card-img" style="background:#c8d8c2;">
+            <div class="recipe-badge">Recipe</div>
+            <div class="img-placeholder" style="background:#c8d8c2; height:100%;">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="14" stroke="#7E9078" stroke-width="2" fill="none"/><path d="M18 24 Q24 18 30 24" stroke="#7E9078" stroke-width="1.5" fill="none"/></svg>
+            </div>
+          </div>
+          <div class="recipe-card-body">
+            <h3 class="recipe-title">Smoked Brisket Tacos for the Whole Youth Group</h3>
+            <div class="recipe-stats">
+              <div class="recipe-stat">
+                <span class="recipe-stat-label">Time</span>
+                <span class="recipe-stat-value">6 hrs</span>
+              </div>
+              <div class="recipe-stat">
+                <span class="recipe-stat-label">Serves</span>
+                <span class="recipe-stat-value">20–25</span>
+              </div>
+              <div class="recipe-stat">
+                <span class="recipe-stat-label">Level</span>
+                <span class="recipe-stat-value">Weekend</span>
+              </div>
+            </div>
+            <a href="#" class="recipe-link">Get the recipe</a>
+          </div>
+        </article>
+
+        <!-- Recipe 2 -->
+        <article class="recipe-card">
+          <div class="recipe-card-img" style="background:#dde6c8;">
+            <div class="recipe-badge">Recipe</div>
+            <div class="img-placeholder" style="background:#dde6c8; height:100%;">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><ellipse cx="24" cy="28" rx="12" ry="8" stroke="#7E9078" stroke-width="2" fill="none"/><path d="M20 28 Q24 20 28 28" stroke="#7E9078" stroke-width="1.5" fill="none"/></svg>
+            </div>
+          </div>
+          <div class="recipe-card-body">
+            <h3 class="recipe-title">Sheet Pan Chicken Thighs with Lemon & Herbs</h3>
+            <div class="recipe-stats">
+              <div class="recipe-stat">
+                <span class="recipe-stat-label">Time</span>
+                <span class="recipe-stat-value">45 min</span>
+              </div>
+              <div class="recipe-stat">
+                <span class="recipe-stat-label">Serves</span>
+                <span class="recipe-stat-value">4–6</span>
+              </div>
+              <div class="recipe-stat">
+                <span class="recipe-stat-label">Level</span>
+                <span class="recipe-stat-value">Easy</span>
+              </div>
+            </div>
+            <a href="#" class="recipe-link">Get the recipe</a>
+          </div>
+        </article>
+
+        <!-- Recipe 3 -->
+        <article class="recipe-card">
+          <div class="recipe-card-img" style="background:#e8deca;">
+            <div class="recipe-badge">Recipe</div>
+            <div class="img-placeholder" style="background:#e8deca; height:100%;">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="16" y="20" width="16" height="16" rx="2" stroke="#C98A35" stroke-width="2" fill="none"/><path d="M20 20 L20 16 Q24 12 28 16 L28 20" stroke="#C98A35" stroke-width="1.5" fill="none"/></svg>
+            </div>
+          </div>
+          <div class="recipe-card-body">
+            <h3 class="recipe-title">The Saturday Morning Pancakes We Make Every Week</h3>
+            <div class="recipe-stats">
+              <div class="recipe-stat">
+                <span class="recipe-stat-label">Time</span>
+                <span class="recipe-stat-value">20 min</span>
+              </div>
+              <div class="recipe-stat">
+                <span class="recipe-stat-label">Serves</span>
+                <span class="recipe-stat-value">4</span>
+              </div>
+              <div class="recipe-stat">
+                <span class="recipe-stat-label">Level</span>
+                <span class="recipe-stat-value">Easy</span>
+              </div>
+            </div>
+            <a href="#" class="recipe-link">Get the recipe</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Newsletter ────────────────────────────────────────── -->
+  <section class="newsletter" id="newsletter">
+    <div class="newsletter-inner">
+      <div>
+        <p class="newsletter-overline">Weekly Newsletter</p>
+        <h2 class="newsletter-headline">Stuff Worth<br>Reading</h2>
+        <p class="newsletter-copy">
+          A weekly note — something I wrote, something I cooked, something that hit different in Scripture this week. No fluff, no spam. Just honest words from one person trying to pay attention.
+        </p>
+      </div>
+      <div>
+        <form class="newsletter-form" onsubmit="handleSubscribe(event)">
+          <div class="newsletter-field">
+            <input
+              class="newsletter-input"
+              type="email"
+              id="emailInput"
+              placeholder="your@email.com"
+              required
+            />
+            <button class="newsletter-btn" type="submit">Join</button>
+          </div>
+          <p class="newsletter-note" id="newsletterMsg">No spam. Unsubscribe any time.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Connect ───────────────────────────────────────────── -->
+  <section class="connect" id="connect">
+    <div class="connect-inner">
+      <p class="connect-overline">Let's talk</p>
+      <h2 class="connect-headline">Got Something<br>on Your Mind?</h2>
+      <p class="connect-copy">
+        Whether you're a student, a parent, a fellow leader, or just someone who stumbled here — I'd love to chat. Grab a spot on my calendar.
+      </p>
+      <a href="#" class="btn btn-paper">Schedule a conversation</a>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-monogram">BP</div>
+        <span class="footer-name">Brandon Peralta</span>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#writing">Writing</a></li>
+        <li><a href="#recipes">Recipes</a></li>
+        <li><a href="#newsletter">Newsletter</a></li>
+        <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+      </ul>
+    </div>
+    <div class="footer-inner">
+      <p class="footer-copy">© 2025 Brandon Peralta · Made with intention.</p>
+    </div>
+  </footer>
+
+  <!-- ── JS ────────────────────────────────────────────────── -->
+  <script>
+    // Mobile nav toggle
+    const toggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    // Close nav on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // Newsletter form
+    function handleSubscribe(e) {
+      e.preventDefault();
+      const msg = document.getElementById('newsletterMsg');
+      const input = document.getElementById('emailInput');
+      msg.textContent = 'You\'re in — talk soon.';
+      msg.style.color = '#7E9078';
+      input.value = '';
+    }
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id], .newsletter[id], .connect[id]');
+    const navAnchors = document.querySelectorAll('.nav-links a');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navAnchors.forEach(a => a.classList.remove('active'));
+          const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { threshold: 0.4 });
+
+    sections.forEach(s => observer.observe(s));
+  </script>
+</body>
+</html>
