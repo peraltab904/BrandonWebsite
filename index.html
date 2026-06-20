@@ -163,7 +163,7 @@
     .hero-text { display: flex; flex-direction: column; }
 
     .hero-photo {
-      width: 260px;
+      width: 390px;
       align-self: center;
       flex-shrink: 0;
     }
@@ -175,8 +175,15 @@
     }
 
     @media (max-width: 760px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-photo { display: none; }
+      .hero {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: left;
+      }
+      .hero-photo {
+        width: 240px;
+        order: -1;
+      }
     }
 
     .hero-overline {
