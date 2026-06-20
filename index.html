@@ -154,6 +154,30 @@
       padding: 96px var(--gutter) 88px;
       max-width: var(--max-w);
       margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: flex-end;
+    }
+
+    .hero-text { display: flex; flex-direction: column; }
+
+    .hero-photo {
+      width: 260px;
+      align-self: flex-end;
+      margin-bottom: -88px;
+      flex-shrink: 0;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      display: block;
+      mix-blend-mode: multiply;
+    }
+
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-photo { display: none; }
     }
 
     .hero-overline {
@@ -692,6 +716,159 @@
       text-align: center;
     }
 
+    /* ─── Recipe Modal ───────────────────────────────────────── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(43,38,32,.6);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: var(--card);
+      border-radius: 6px;
+      max-width: 560px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 40px;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 22px;
+      color: var(--muted);
+      line-height: 1;
+    }
+    .modal-close:hover { color: var(--ink); }
+
+    .modal-badge {
+      display: inline-block;
+      background: var(--sage);
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 2px;
+      margin-bottom: 14px;
+    }
+
+    .modal-title {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 1.3;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+
+    .modal-story {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .modal-stats {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .modal-section-label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 10px;
+    }
+
+    .modal-ingredients {
+      margin-bottom: 24px;
+    }
+
+    .modal-ingredients ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .modal-ingredients li {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--ink);
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .modal-ingredients li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--clay);
+      font-size: 12px;
+    }
+
+    .modal-steps ol {
+      list-style: none;
+      counter-reset: steps;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .modal-steps li {
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--ink);
+      counter-increment: steps;
+      padding-left: 28px;
+      position: relative;
+    }
+
+    .modal-steps li::before {
+      content: counter(steps);
+      position: absolute;
+      left: 0;
+      top: 2px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 11px;
+      color: var(--clay);
+      background: var(--sand);
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      line-height: 18px;
+      padding-left: 0;
+    }
+
     /* ─── Tags ───────────────────────────────────────────────── */
     .tag {
       display: inline-block;
@@ -775,14 +952,19 @@
 
   <!-- ── Hero ─────────────────────────────────────────────── -->
   <section class="hero" id="home">
-    <p class="hero-overline">Faith · Writing · Food</p>
-    <h1 class="hero-headline">Words,<br>Faith<br>&amp; <em>Good Food</em></h1>
-    <p class="hero-sub">
-      I'm Brandon — husband to Katlynne, someone trying to think clearly, learn deeply, and cook a really good steak. This is where I put it all.
-    </p>
-    <div class="hero-actions">
-      <a href="#connect" class="btn btn-primary">Let's connect</a>
-      <a href="#writing" class="btn btn-outline">Read my writing</a>
+    <div class="hero-text">
+      <p class="hero-overline">Faith · Writing · Food</p>
+      <h1 class="hero-headline">Words,<br>Faith<br>&amp; <em>Good Food</em></h1>
+      <p class="hero-sub">
+        I'm Brandon — husband to Katlynne, someone trying to think clearly, learn deeply, and cook a really good steak. This is where I put it all.
+      </p>
+      <div class="hero-actions">
+        <a href="#connect" class="btn btn-primary">Let's connect</a>
+        <a href="#writing" class="btn btn-outline">Read my writing</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="brandoncutout.png" alt="Brandon Peralta" />
     </div>
   </section>
 
@@ -862,72 +1044,68 @@
       </div>
       <div class="recipe-grid">
 
-        <!-- Recipe 1 -->
-        <article class="recipe-card">
-          <div class="recipe-card-img" style="background:#c8d8c2;">
+        <!-- Ema's Pasta -->
+        <article class="recipe-card" onclick="openRecipe('pasta')">
+          <div class="recipe-card-img" style="background:#d8cfc0; overflow:hidden;">
             <div class="recipe-badge">Recipe</div>
-            <div class="img-placeholder" style="background:#c8d8c2; height:100%;">
-              <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="14" stroke="#7E9078" stroke-width="2" fill="none"/><path d="M18 24 Q24 18 30 24" stroke="#7E9078" stroke-width="1.5" fill="none"/></svg>
-            </div>
+            <img src="pasta-fresh.jpg" alt="Fresh handmade pasta" class="writing-card-img-inner" onerror="this.style.display='none'" />
           </div>
           <div class="recipe-card-body">
-            <h3 class="recipe-title">Smoked Brisket Tacos for a Crowd</h3>
+            <h3 class="recipe-title">Ema's Fresh Pasta</h3>
             <div class="recipe-stats">
               <div class="recipe-stat">
                 <span class="recipe-stat-label">Time</span>
-                <span class="recipe-stat-value">6 hrs</span>
+                <span class="recipe-stat-value">1.5 hrs</span>
               </div>
               <div class="recipe-stat">
                 <span class="recipe-stat-label">Serves</span>
-                <span class="recipe-stat-value">20–25</span>
+                <span class="recipe-stat-value">4</span>
               </div>
               <div class="recipe-stat">
                 <span class="recipe-stat-label">Level</span>
-                <span class="recipe-stat-value">Weekend</span>
+                <span class="recipe-stat-value">Patient</span>
               </div>
             </div>
-            <a href="#" class="recipe-link">Get the recipe</a>
+            <span class="recipe-link" style="cursor:pointer;">Get the recipe</span>
           </div>
         </article>
 
-        <!-- Recipe 2 -->
-        <article class="recipe-card">
-          <div class="recipe-card-img" style="background:#dde6c8;">
+        <!-- Mom's Cheesecake -->
+        <article class="recipe-card" onclick="openRecipe('cheesecake')">
+          <div class="recipe-card-img" style="background:#f0e8d8;">
             <div class="recipe-badge">Recipe</div>
-            <div class="img-placeholder" style="background:#dde6c8; height:100%;">
-              <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><ellipse cx="24" cy="28" rx="12" ry="8" stroke="#7E9078" stroke-width="2" fill="none"/><path d="M20 28 Q24 20 28 28" stroke="#7E9078" stroke-width="1.5" fill="none"/></svg>
+            <div class="img-placeholder" style="background:#f0e8d8; height:100%;">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M12 32 Q12 20 24 20 Q36 20 36 32 Z" stroke="#C98A35" stroke-width="2" fill="none"/><line x1="12" y1="32" x2="36" y2="32" stroke="#C98A35" stroke-width="2"/></svg>
             </div>
           </div>
           <div class="recipe-card-body">
-            <h3 class="recipe-title">Sheet Pan Chicken Thighs with Lemon & Herbs</h3>
+            <h3 class="recipe-title">Mom's Cheesecake (The Secret One)</h3>
             <div class="recipe-stats">
               <div class="recipe-stat">
                 <span class="recipe-stat-label">Time</span>
-                <span class="recipe-stat-value">45 min</span>
+                <span class="recipe-stat-value">1 hr</span>
               </div>
               <div class="recipe-stat">
                 <span class="recipe-stat-label">Serves</span>
-                <span class="recipe-stat-value">4–6</span>
+                <span class="recipe-stat-value">8</span>
               </div>
               <div class="recipe-stat">
                 <span class="recipe-stat-label">Level</span>
                 <span class="recipe-stat-value">Easy</span>
               </div>
             </div>
-            <a href="#" class="recipe-link">Get the recipe</a>
+            <span class="recipe-link" style="cursor:pointer;">Get the recipe</span>
           </div>
         </article>
 
-        <!-- Recipe 3 -->
-        <article class="recipe-card">
-          <div class="recipe-card-img" style="background:#e8deca;">
+        <!-- Mom's Alfredo -->
+        <article class="recipe-card" onclick="openRecipe('alfredo')">
+          <div class="recipe-card-img" style="background:#e8e0cc; overflow:hidden;">
             <div class="recipe-badge">Recipe</div>
-            <div class="img-placeholder" style="background:#e8deca; height:100%;">
-              <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="16" y="20" width="16" height="16" rx="2" stroke="#C98A35" stroke-width="2" fill="none"/><path d="M20 20 L20 16 Q24 12 28 16 L28 20" stroke="#C98A35" stroke-width="1.5" fill="none"/></svg>
-            </div>
+            <img src="pasta-alfredo.jpg" alt="Alfredo pasta" class="writing-card-img-inner" onerror="this.style.display='none'" />
           </div>
           <div class="recipe-card-body">
-            <h3 class="recipe-title">The Saturday Morning Pancakes We Make Every Week</h3>
+            <h3 class="recipe-title">Mom's Alfredo</h3>
             <div class="recipe-stats">
               <div class="recipe-stat">
                 <span class="recipe-stat-label">Time</span>
@@ -942,7 +1120,7 @@
                 <span class="recipe-stat-value">Easy</span>
               </div>
             </div>
-            <a href="#" class="recipe-link">Get the recipe</a>
+            <span class="recipe-link" style="cursor:pointer;">Get the recipe</span>
           </div>
         </article>
 
@@ -1001,7 +1179,7 @@
         <li><a href="#writing">Writing</a></li>
         <li><a href="#recipes">Recipes</a></li>
         <li><a href="#newsletter">Newsletter</a></li>
-        <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.instagram.com/brandonp904" target="_blank" rel="noopener">Instagram</a></li>
       </ul>
     </div>
     <div class="footer-inner">
@@ -1009,8 +1187,121 @@
     </div>
   </footer>
 
+  <!-- ── Recipe Modal ─────────────────────────────────────── -->
+  <div class="modal-overlay" id="recipeModal" onclick="closeRecipeOnBg(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeRecipe()">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
   <!-- ── JS ────────────────────────────────────────────────── -->
   <script>
+    // Recipe data
+    const recipes = {
+      pasta: {
+        title: "Ema's Fresh Pasta",
+        story: "This recipe was on a scrap of paper, held by a magnet on my grandmother's fridge. I call her Ema. That's all you need to know about why it's good.",
+        time: "1.5 hrs", serves: "4", level: "Patient",
+        ingredients: [
+          "2 cups 00 flour",
+          "¼ cup semolina flour",
+          "3 eggs",
+          "1 tbsp olive oil",
+          "½ tsp salt"
+        ],
+        steps: [
+          "Mound both flours on a clean surface and make a well in the center.",
+          "Crack in the eggs, add olive oil and salt. Beat with a fork, slowly pulling in flour from the edges.",
+          "Once it comes together, knead by hand for 8–10 minutes until smooth and elastic. If it's sticky, add a little flour. If it's dry, wet your hands.",
+          "Wrap tightly in plastic wrap and let it rest in a warm spot for 1 hour.",
+          "Divide into sections. Roll thin with a pasta machine or rolling pin — aim for nearly translucent. Cut into fettuccine strips.",
+          "Cook in generously salted boiling water for 2–3 minutes. Fresh pasta cooks fast. Taste it."
+        ]
+      },
+      cheesecake: {
+        title: "Mom's Cheesecake",
+        story: "When my mom was a teenager she worked at an Italian restaurant and got this recipe from an old Sicilian lady. The secret? Real lemon juice — not just zest. That's what she says, anyway. Also, if you don't let the cream cheese come to room temperature first, you're gonna regret it.",
+        time: "1 hr + chill", serves: "8", level: "Easy",
+        ingredients: [
+          "2 bars (16 oz) cream cheese, room temperature",
+          "1 egg",
+          "½ cup sugar",
+          "½ tsp lemon juice",
+          "1 tsp vanilla extract",
+          "½ cup sour cream (optional — I don't use it)",
+          "Graham cracker crust tin",
+          "Strawberry topping, homemade or store-bought"
+        ],
+        steps: [
+          "Let your cream cheese sit out until fully room temperature. Don't rush this.",
+          "Beat cream cheese until smooth and fluffy. No lumps.",
+          "Add sugar, egg, lemon juice, and vanilla. Beat until fully combined.",
+          "Fold in sour cream if using.",
+          "Pour into the graham cracker crust and smooth the top.",
+          "Bake at 350°F for 40–60 minutes. The edges should be set but the center should have a slight jiggle.",
+          "Cool completely at room temperature, then refrigerate for at least 2 hours (overnight is better).",
+          "Top with strawberries before serving."
+        ]
+      },
+      alfredo: {
+        title: "Mom's Alfredo",
+        story: "If you can't tell by now, my mom is the best cook I know — besides me. LOL. This is her classic. I'll put my own spin on it eventually, but here's where it starts.",
+        time: "20 min", serves: "4", level: "Easy",
+        ingredients: [
+          "1 pint heavy whipping cream",
+          "1 egg yolk (just the yolk — don't miss that part)",
+          "¼ cup parmesan cheese, grated",
+          "½ tsp salt",
+          "¼ tsp black pepper",
+          "Parsley, to taste",
+          "Bacon, optional",
+          "Garlic powder, optional"
+        ],
+        steps: [
+          "If using bacon, cook until crispy in a wide pan. Set aside, leave a little of the fat in the pan.",
+          "Pour heavy cream into the pan over medium heat. Bring to a gentle simmer — don't boil.",
+          "In a small bowl, whisk the egg yolk. Slowly ladle a spoonful of hot cream into the yolk while whisking (this tempers it so it doesn't scramble). Pour the mixture back into the pan.",
+          "Add parmesan and stir until melted and the sauce coats a spoon.",
+          "Season with salt, pepper, and garlic powder if using.",
+          "Toss with your pasta of choice. Top with bacon, parsley, and more parmesan."
+        ]
+      }
+    };
+
+    function openRecipe(id) {
+      const r = recipes[id];
+      document.getElementById('modalContent').innerHTML = `
+        <span class="modal-badge">Recipe</span>
+        <h2 class="modal-title">${r.title}</h2>
+        <p class="modal-story">${r.story}</p>
+        <div class="modal-stats recipe-stats">
+          <div class="recipe-stat"><span class="recipe-stat-label">Time</span><span class="recipe-stat-value">${r.time}</span></div>
+          <div class="recipe-stat"><span class="recipe-stat-label">Serves</span><span class="recipe-stat-value">${r.serves}</span></div>
+          <div class="recipe-stat"><span class="recipe-stat-label">Level</span><span class="recipe-stat-value">${r.level}</span></div>
+        </div>
+        <div class="modal-ingredients">
+          <p class="modal-section-label">Ingredients</p>
+          <ul>${r.ingredients.map(i => `<li>${i}</li>`).join('')}</ul>
+        </div>
+        <div class="modal-steps">
+          <p class="modal-section-label">Steps</p>
+          <ol>${r.steps.map(s => `<li>${s}</li>`).join('')}</ol>
+        </div>
+      `;
+      document.getElementById('recipeModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeRecipe() {
+      document.getElementById('recipeModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function closeRecipeOnBg(e) {
+      if (e.target === document.getElementById('recipeModal')) closeRecipe();
+    }
+
     // Mobile nav toggle
     const toggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
